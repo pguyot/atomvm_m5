@@ -1,0 +1,9 @@
+menu "ATOMVM_M5 Configuration"
+
+config AVM_M5_ENABLE
+	bool  "Enable AtomVM M5 driver"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver.
+
+endmenu

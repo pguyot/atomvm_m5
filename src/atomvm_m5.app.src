@@ -1,0 +1,12 @@
+{
+    application, atomvm_m5, [
+        {description, "Port of M5Unified for the AtomVM platform"},
+        {vsn, "0.1.0"},
+        {registered, []},
+        {applications, [kernel, stdlib]},
+        {env,[]},
+        {modules, []},
+        {licenses, ["MIT"]},
+        {links, []}
+    ]
+}.

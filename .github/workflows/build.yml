@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: MIT
+name: Build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: espressif/idf:release-v4.4
+    steps:
+    - name: Checkout AtomVM
+      uses: actions/checkout@v3
+      with:
+        repository: pguyot/AtomVM
+        ref: w41/smp-support
+        path: AtomVM
+    - name: Checkout M5Unified
+      uses: actions/checkout@v3
+      with:
+        repository: m5stack/M5Unified
+        path: AtomVM/src/platform/esp32/components/
+    - name: Checkout M5GFX
+      uses: actions/checkout@v3
+      with:
+        repository: m5stack/M5GFX
+        path: AtomVM/src/platform/esp32/components/
+    - name: Checkout atomvm_m5
+      uses: actions/checkout@v3
+      with:
+        path: AtomVM/src/platform/esp32/components/
+    - name: Build with idf.py
+      shell: bash
+      working-directory: AtomVM/src/platforms/esp32/
+      run: |
+        . $IDF_PATH/export.sh
+        idf.py reconfigure
+        idf.py build
