@@ -2,6 +2,12 @@
 
 set(ATOMVM_M5_COMPONENT_SRCS
     "nifs/atomvm_m5.cc"
+    "nifs/atomvm_m5_display.cc"
+    "nifs/atomvm_m5_i2c.cc"
+    "nifs/atomvm_m5_power.cc"
+    "nifs/atomvm_m5_power_axp192.cc"
+    "nifs/atomvm_m5_rtc.cc"
+    "nifs/atomvm_m5_speaker.cc"
 )
 
 idf_component_register(
