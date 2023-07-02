@@ -6,4 +6,40 @@ config AVM_M5_ENABLE
 	help
 		Use this parameter to enable or disable the AtomVM M5 driver.
 
+config AVM_M5_DISPLAY_ENABLE
+	bool  "Enable AtomVM M5 driver display API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver display API.
+
+config AVM_M5_POWER_ENABLE
+	bool  "Enable AtomVM M5 driver power API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver power API.
+
+config AVM_M5_POWER_AXP192_ENABLE
+	bool  "Enable AtomVM M5 driver power AXP192 API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver power AXP192 API.
+
+config AVM_M5_I2C_ENABLE
+	bool  "Enable AtomVM M5 driver I2C API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver I2C API.
+
+config AVM_M5_RTC_ENABLE
+        bool  "Enable AtomVM M5 driver RTC API"
+        default y
+        help
+		Use this parameter to enable or disable the AtomVM M5 driver RTC API.
+
+config AVM_M5_SPEAKER_ENABLE
+	bool  "Enable AtomVM M5 driver speaker API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver speaker API.
+
 endmenu
