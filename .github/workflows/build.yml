@@ -13,8 +13,7 @@ jobs:
     - name: Checkout AtomVM
       uses: actions/checkout@v3
       with:
-        repository: pguyot/AtomVM
-        ref: w41/smp-support
+        repository: atomvm/AtomVM
         path: AtomVM
     - name: Checkout M5Unified
       uses: actions/checkout@v3
@@ -37,3 +36,51 @@ jobs:
         . $IDF_PATH/export.sh
         idf.py reconfigure
         idf.py build
+
+  build-doc:
+    runs-on: ubuntu-latest
+    container: erlang:26
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Build edoc
+        run: |
+          rebar3 edoc
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: doc
+
+  clang-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install clang-format
+        run: |
+            sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+      - name: Install run-clang-format
+        run: |
+            curl -sSfL https://raw.githubusercontent.com/Sarcasm/run-clang-format/master/run-clang-format.py -o run-clang-format
+            chmod +x run-clang-format
+      - name: Check format with clang-format
+        run: |
+            ./run-clang-format --style=file -r nifs/
+
+  erlfmt:
+    runs-on: ubuntu-latest
+    container: erlang:26
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout erlfmt
+        run: |
+            cd ..
+            git clone --depth 1 -b v1.1.0 https://github.com/WhatsApp/erlfmt.git
+            cd erlfmt
+            rebar3 as release escriptize
+      - name: Check format with erlfmt
+        run: |
+            find . -name *.erl | xargs ../erlfmt/_build/release/bin/erlfmt -c
