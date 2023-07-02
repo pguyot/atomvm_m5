@@ -1,0 +1,4 @@
+% Define Wifi settings
+
+-define(WIFI_SSID, "ssid").
+-define(WIFI_PSK, "psk").

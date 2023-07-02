@@ -1,0 +1,13 @@
+{application, rtc,
+ [{description, "AtomVM M5 RTC example"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+  {licenses, ["MIT"]},
+  {links, []}
+ ]}.
