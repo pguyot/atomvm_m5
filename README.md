@@ -13,14 +13,4 @@ This project is a port of M5Unified for the AtomVM platform.
 
 ## Usage
 
-The following modules are currently defined:
-
-```
-m5
-m5_display
-m5_i2c
-m5_power
-m5_power_axp192
-m5_rtc
-m5_speaker
-```
+Please refer to [examples](examples/) and [API documentation](https://pguyot.github.io/atomvm_m5/).

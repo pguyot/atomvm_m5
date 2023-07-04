@@ -28,38 +28,17 @@
 //#define ENABLE_TRACE
 #include <trace.h>
 
+#include "atomvm_m5_nifs.h"
+
 #define MODULE_IN_PREFIX "m5_in_i2c:"
 #define MODULE_EX_PREFIX "m5_ex_i2c:"
 
 #define MAKE_ATOM(ctx, len, str) globalcontext_make_atom(ctx->global, ATOM_STR(len, str))
 
-static term nif_in_i2c_set_port(Context* ctx, int argc, term argv[])
-{
-    UNUSED(argc);
-    M5.In_I2C.setPort(term_to_int32(argv[0]), term_to_int32(argv[1]), term_to_int32(argv[2]));
-    return OK_ATOM;
-}
-
-static term nif_ex_i2c_set_port(Context* ctx, int argc, term argv[])
-{
-    UNUSED(argc);
-    M5.Ex_I2C.setPort(term_to_int32(argv[0]), term_to_int32(argv[1]), term_to_int32(argv[2]));
-    return OK_ATOM;
-}
-
-static term nif_in_i2c_begin(Context* ctx, int argc, term argv[])
-{
-    UNUSED(argc);
-    bool result = M5.In_I2C.begin(term_to_int32(argv[0]), term_to_int32(argv[1]), term_to_int32(argv[2]));
-    return result ? TRUE_ATOM : FALSE_ATOM;
-}
-
-static term nif_ex_i2c_begin(Context* ctx, int argc, term argv[])
-{
-    UNUSED(argc);
-    bool result = M5.Ex_I2C.begin(term_to_int32(argv[0]), term_to_int32(argv[1]), term_to_int32(argv[2]));
-    return result ? TRUE_ATOM : FALSE_ATOM;
-}
+M5_NIF_i3_v(nif_in_i2c_set_port, In_I2C, setPort)
+M5_NIF_i3_v(nif_ex_i2c_set_port, Ex_I2C, setPort)
+M5_NIF_i3_v(nif_in_i2c_begin, In_I2C, begin)
+M5_NIF_i3_v(nif_ex_i2c_begin, Ex_I2C, begin)
 
 static constexpr std::array<std::pair<const char*, const struct Nif>, 2> IN_NIFS = { {
     { "set_port/3", { { NIFFunctionType }, nif_in_i2c_set_port } },

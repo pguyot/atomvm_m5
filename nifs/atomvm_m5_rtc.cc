@@ -28,17 +28,13 @@
 //#define ENABLE_TRACE
 #include <trace.h>
 
+#include "atomvm_m5_nifs.h"
+
 #define MODULE_PREFIX "m5_rtc:"
 
 #define MAKE_ATOM(ctx, len, str) globalcontext_make_atom(ctx->global, ATOM_STR(len, str))
 
-static term nif_rtc_is_enabled(Context* ctx, int argc, term argv[])
-{
-    UNUSED(argc);
-    UNUSED(argv);
-
-    return M5.Rtc.isEnabled() ? TRUE_ATOM : FALSE_ATOM;
-}
+M5_NIF_v_b(nif_rtc_is_enabled, Rtc, isEnabled)
 
 static term nif_rtc_get_time(Context* ctx, int argc, term argv[])
 {

@@ -6,6 +6,12 @@ config AVM_M5_ENABLE
 	help
 		Use this parameter to enable or disable the AtomVM M5 driver.
 
+config AVM_M5_BTN_ENABLE
+	bool  "Enable AtomVM M5 driver button API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver button API.
+
 config AVM_M5_DISPLAY_ENABLE
 	bool  "Enable AtomVM M5 driver display API"
 	default y
@@ -29,6 +35,12 @@ config AVM_M5_I2C_ENABLE
 	default y
 	help
 		Use this parameter to enable or disable the AtomVM M5 driver I2C API.
+
+config AVM_M5_IMU_ENABLE
+	bool  "Enable AtomVM M5 driver IMU API"
+	default y
+	help
+		Use this parameter to enable or disable the AtomVM M5 driver IMU API.
 
 config AVM_M5_RTC_ENABLE
         bool  "Enable AtomVM M5 driver RTC API"

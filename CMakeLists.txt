@@ -2,8 +2,10 @@
 
 set(ATOMVM_M5_COMPONENT_SRCS
     "nifs/atomvm_m5.cc"
+    "nifs/atomvm_m5_btn.cc"
     "nifs/atomvm_m5_display.cc"
     "nifs/atomvm_m5_i2c.cc"
+    "nifs/atomvm_m5_imu.cc"
     "nifs/atomvm_m5_power.cc"
     "nifs/atomvm_m5_power_axp192.cc"
     "nifs/atomvm_m5_rtc.cc"
