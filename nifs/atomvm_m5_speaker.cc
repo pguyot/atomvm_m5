@@ -28,7 +28,13 @@
 //#define ENABLE_TRACE
 #include <trace.h>
 
+#include "atomvm_m5_nifs.h"
+
 #define MODULE_PREFIX "m5_speaker:"
+
+M5_NIF_v_b(nif_speaker_is_enabled, Speaker, isEnabled)
+M5_NIF_v_b(nif_speaker_is_playing, Speaker, isPlaying)
+M5_NIF_i_v(nif_speaker_set_volume, Speaker, setVolume)
 
 static term nif_speaker_tone(Context* ctx, int argc, term argv[])
 {
@@ -36,8 +42,8 @@ static term nif_speaker_tone(Context* ctx, int argc, term argv[])
     VALIDATE_VALUE(argv[1], term_is_integer);
     int channel = -1;
     if (argc > 2) {
-        VALIDATE_VALUE(argv[2], term_is_number);
-        channel = term_to_int32(argv[2]);
+        VALIDATE_VALUE(argv[2], term_is_integer);
+        channel = term_to_int(argv[2]);
     }
     bool stop_current_sound = true;
     if (argc > 3) {
@@ -54,12 +60,69 @@ static term nif_speaker_tone(Context* ctx, int argc, term argv[])
     return r ? TRUE_ATOM : FALSE_ATOM;
 }
 
-static constexpr std::array<std::pair<const char*, const struct Nif>, 3> NIFS = { {
+template <typename T>
+static term nif_speaker_play_raw(Context* ctx, int argc, term argv[])
+{
+    UNUSED(argc);
+    VALIDATE_VALUE(argv[0], term_is_binary);
+    uint32_t sample_rate = 44100;
+    bool stereo = false;
+    uint32_t repeat = 1;
+    int channel = -1;
+    bool stop_current_sound = false;
+
+    if (argc > 1) {
+        VALIDATE_VALUE(argv[1], term_is_integer);
+        sample_rate = term_to_int(argv[1]);
+        if (argc > 2) {
+            VALIDATE_VALUE(argv[2], term_is_atom);
+            stereo = argv[2] == TRUE_ATOM;
+            if (argc > 3) {
+                VALIDATE_VALUE(argv[3], term_is_integer);
+                repeat = term_to_int(argv[3]);
+                if (argc > 4) {
+                    VALIDATE_VALUE(argv[4], term_is_integer);
+                    channel = term_to_int(argv[4]);
+                    if (argc > 5) {
+                        VALIDATE_VALUE(argv[5], term_is_atom);
+                        stop_current_sound = argv[5] == TRUE_ATOM;
+                    }
+                }
+            }
+        }
+    }
+
+    const T* data = (const T*)term_binary_data(argv[0]);
+    size_t data_len = term_binary_size(argv[0]) / sizeof(T);
+
+    bool result = M5.Speaker.playRaw(data, data_len, sample_rate, stereo, repeat, channel, stop_current_sound);
+    return result ? TRUE_ATOM : FALSE_ATOM;
+}
+
+static constexpr std::array<std::pair<const char*, const struct Nif>, 24> NIFS = { { { "is_enabled/0", { { NIFFunctionType }, nif_speaker_is_enabled } },
+    { "is_playing/0", { { NIFFunctionType }, nif_speaker_is_playing } },
+    { "set_volume/1", { { NIFFunctionType }, nif_speaker_set_volume } },
     { "tone/2", { { NIFFunctionType }, nif_speaker_tone } },
     { "tone/3", { { NIFFunctionType }, nif_speaker_tone } },
     { "tone/4", { { NIFFunctionType }, nif_speaker_tone } },
-
-} };
+    { "play_raw_u8/1", { { NIFFunctionType }, nif_speaker_play_raw<uint8_t> } },
+    { "play_raw_u8/2", { { NIFFunctionType }, nif_speaker_play_raw<uint8_t> } },
+    { "play_raw_u8/3", { { NIFFunctionType }, nif_speaker_play_raw<uint8_t> } },
+    { "play_raw_u8/4", { { NIFFunctionType }, nif_speaker_play_raw<uint8_t> } },
+    { "play_raw_u8/5", { { NIFFunctionType }, nif_speaker_play_raw<uint8_t> } },
+    { "play_raw_u8/6", { { NIFFunctionType }, nif_speaker_play_raw<uint8_t> } },
+    { "play_raw_s8/1", { { NIFFunctionType }, nif_speaker_play_raw<int8_t> } },
+    { "play_raw_s8/2", { { NIFFunctionType }, nif_speaker_play_raw<int8_t> } },
+    { "play_raw_s8/3", { { NIFFunctionType }, nif_speaker_play_raw<int8_t> } },
+    { "play_raw_s8/4", { { NIFFunctionType }, nif_speaker_play_raw<int8_t> } },
+    { "play_raw_s8/5", { { NIFFunctionType }, nif_speaker_play_raw<int8_t> } },
+    { "play_raw_s8/6", { { NIFFunctionType }, nif_speaker_play_raw<int8_t> } },
+    { "play_raw_s16/1", { { NIFFunctionType }, nif_speaker_play_raw<int16_t> } },
+    { "play_raw_s16/2", { { NIFFunctionType }, nif_speaker_play_raw<int16_t> } },
+    { "play_raw_s16/3", { { NIFFunctionType }, nif_speaker_play_raw<int16_t> } },
+    { "play_raw_s16/4", { { NIFFunctionType }, nif_speaker_play_raw<int16_t> } },
+    { "play_raw_s16/5", { { NIFFunctionType }, nif_speaker_play_raw<int16_t> } },
+    { "play_raw_s16/6", { { NIFFunctionType }, nif_speaker_play_raw<int16_t> } } } };
 
 //
 // Component Nif Entrypoints

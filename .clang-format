@@ -3,13 +3,22 @@
 ---
 BasedOnStyle:  WebKit
 StatementMacros:
-- M5_NIF_v_v
-- M5_NIF_v_i
+- M5_NIF_b_v
+- M5_NIF_f_f2_v
 - M5_NIF_i_v
+- M5_NIF_i2_i2u_v
 - M5_NIF_i2_v
+- M5_NIF_i3_i3u_v
 - M5_NIF_i3_v
-- M5_NIF_i2_i3_v
-- M5_NIF_i3_i4_v
-- M5_NIF_i4_i5_v
-- M5_NIF_i5_i6_v
-- M5_NIF_i6_i7_v
+- M5_NIF_i4_i4u_v
+- M5_NIF_i4_v
+- M5_NIF_i5_i5u_v
+- M5_NIF_i6_i6u_v
+- M5_NIF_si2_i
+- M5_NIF_u_v
+- M5_NIF_v_3b
+- M5_NIF_v_b
+- M5_NIF_v_i
+- M5_NIF_v_i4
+- M5_NIF_v_u_v
+- M5_NIF_v_v

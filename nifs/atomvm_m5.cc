@@ -31,7 +31,6 @@
 #define MODULE_PREFIX "m5:"
 
 #define MAKE_ATOM(ctx, len, str) globalcontext_make_atom(ctx->global, ATOM_STR(len, str))
-//#define MAKE_ATOM(ctx, len, str) context_make_atom(ctx, ATOM_STR(len, str))
 
 static term nif_begin(Context* ctx, int argc, term argv[])
 {
@@ -64,7 +63,18 @@ static term nif_get_board(Context* ctx, int argc, term argv[])
     UNUSED(argc);
 
     switch (M5.getBoard()) {
-#if defined(CONFIG_IDF_TARGET_ESP32C3)
+#if defined(CONFIG_IDF_TARGET_ESP32S3)
+    case m5::board_t::board_M5StackCoreS3:
+        return MAKE_ATOM(ctx, "\x8", "stamp_core_s3");
+    case m5::board_t::board_M5StampS3:
+        return MAKE_ATOM(ctx, "\x9", "stamp_s3");
+    case m5::board_t::board_M5AtomS3U:
+        return MAKE_ATOM(ctx, "\x9", "atom_s3u");
+    case m5::board_t::board_M5AtomS3Lite:
+        return MAKE_ATOM(ctx, "\x9", "atom_s3lite");
+    case m5::board_t::board_M5AtomS3:
+        return MAKE_ATOM(ctx, "\x9", "atom_s3");
+#elif defined(CONFIG_IDF_TARGET_ESP32C3)
     case m5::board_t::board_M5StampC3:
         return MAKE_ATOM(ctx, "\x8", "stamp_c3");
     case m5::board_t::board_M5StampC3U:

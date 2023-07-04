@@ -5,10 +5,11 @@ M5 RTC sample code
 
 This sample code illustrates how to use RTC and perform synchronization with NTP.
 
-Usage
------
+Installation
+------------
 
-- Install rebar3.
+- Compile and install AtomVM with `atomvm_m5` as explained [here](../../../README.md)
+- Install rebar3
 - Copy `src/config.hrl-template` to `src/config.hrl`
 - Edit `src/config.hrl` with your Wifi credentials
 - Connect a M5 device with AtomVM (VM and library) preinstalled.
