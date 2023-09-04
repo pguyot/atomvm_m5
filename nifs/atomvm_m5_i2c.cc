@@ -25,7 +25,7 @@
 #include <memory.h>
 #include <nifs.h>
 #include <term.h>
-//#define ENABLE_TRACE
+// #define ENABLE_TRACE
 #include <trace.h>
 
 #include "atomvm_m5_nifs.h"
@@ -35,10 +35,10 @@
 
 #define MAKE_ATOM(ctx, len, str) globalcontext_make_atom(ctx->global, ATOM_STR(len, str))
 
-M5_NIF_i3_v(nif_in_i2c_set_port, In_I2C, setPort)
-M5_NIF_i3_v(nif_ex_i2c_set_port, Ex_I2C, setPort)
-M5_NIF_i3_v(nif_in_i2c_begin, In_I2C, begin)
-M5_NIF_i3_v(nif_ex_i2c_begin, Ex_I2C, begin)
+M5_NIF_ici2_v(nif_in_i2c_set_port, In_I2C, setPort, i2c_port_t)
+M5_NIF_ici2_v(nif_ex_i2c_set_port, Ex_I2C, setPort, i2c_port_t)
+M5_NIF_ici2_v(nif_in_i2c_begin, In_I2C, begin, i2c_port_t)
+M5_NIF_ici2_v(nif_ex_i2c_begin, Ex_I2C, begin, i2c_port_t)
 
 static constexpr std::array<std::pair<const char*, const struct Nif>, 2> IN_NIFS = { {
     { "set_port/3", { { NIFFunctionType }, nif_in_i2c_set_port } },

@@ -10,6 +10,7 @@ StatementMacros:
 - M5_NIF_i2_v
 - M5_NIF_i3_i3u_v
 - M5_NIF_i3_v
+- M5_NIF_ici2_v
 - M5_NIF_i4_i4u_v
 - M5_NIF_i4_v
 - M5_NIF_i5_i5u_v
@@ -20,5 +21,6 @@ StatementMacros:
 - M5_NIF_v_b
 - M5_NIF_v_i
 - M5_NIF_v_i4
+- M5_NIF_i32o4_v
 - M5_NIF_v_u_v
 - M5_NIF_v_v

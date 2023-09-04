@@ -18,7 +18,9 @@ idf_component_register(
     PRIV_REQUIRES "libatomvm" "avm_sys" "main" "M5Unified"
 )
 
+target_compile_features(${COMPONENT_LIB} INTERFACE cxx_std_14)
+
 idf_build_set_property(
-    LINK_OPTIONS "-Wl,--whole-archive ${CMAKE_CURRENT_BINARY_DIR}/lib${COMPONENT_NAME}.a -Wl,--no-whole-archive"
+    LINK_OPTIONS "-Wl,--whole-archive;${CMAKE_CURRENT_BINARY_DIR}/lib${COMPONENT_NAME}.a;-Wl,--no-whole-archive"
     APPEND
 )

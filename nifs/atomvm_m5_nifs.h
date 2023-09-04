@@ -111,6 +111,20 @@
         return OK_ATOM;                                   \
     }
 
+#define M5_NIF_ici2_v(name, module, api_func, t)          \
+    static term name(Context* ctx, int argc, term argv[]) \
+    {                                                     \
+        UNUSED(argc);                                     \
+        VALIDATE_VALUE(argv[0], term_is_integer);         \
+        VALIDATE_VALUE(argv[1], term_is_integer);         \
+        VALIDATE_VALUE(argv[2], term_is_integer);         \
+        M5.module.api_func(                               \
+            (t)term_to_int(argv[0]),                      \
+            term_to_int(argv[1]),                         \
+            term_to_int(argv[2]));                        \
+        return OK_ATOM;                                   \
+    }
+
 #define M5_NIF_i4_v(name, module, api_func)               \
     static term name(Context* ctx, int argc, term argv[]) \
     {                                                     \
@@ -126,12 +140,12 @@
         return OK_ATOM;                                   \
     }
 
-#define M5_NIF_v_i4(name, module, api_func)                                                  \
+#define M5_NIF_i32o4_v(name, module, api_func)                                               \
     static term name(Context* ctx, int argc, term argv[])                                    \
     {                                                                                        \
         UNUSED(argc);                                                                        \
         UNUSED(argv);                                                                        \
-        int x, y, w, h;                                                                      \
+        int32_t x, y, w, h;                                                                  \
         M5.module.api_func(&x, &y, &w, &h);                                                  \
         if (memory_ensure_free_opt(ctx, TUPLE_SIZE(4), MEMORY_CAN_SHRINK) != MEMORY_GC_OK) { \
             RAISE_ERROR(OUT_OF_MEMORY_ATOM);                                                 \
