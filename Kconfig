@@ -26,7 +26,7 @@ config AVM_M5_POWER_ENABLE
 
 config AVM_M5_POWER_AXP192_ENABLE
 	bool  "Enable AtomVM M5 driver power AXP192 API"
-	default y
+	default "y" if IDF_TARGET!="esp32c3" && IDF_TARGET!="esp32s3"
 	help
 		Use this parameter to enable or disable the AtomVM M5 driver power AXP192 API.
 
