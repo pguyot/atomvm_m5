@@ -210,7 +210,7 @@ static term nif_display_print(Context* ctx, int argc, term argv[])
     }
 
     char* bin_buf = (char*)malloc(bin_size);
-    if (IS_NULL_PTR(bin_buf)) {
+    if (bin_size && IS_NULL_PTR(bin_buf)) {
         RAISE_ERROR(OUT_OF_MEMORY_ATOM);
     }
 
