@@ -4,7 +4,7 @@ This project is a port of M5Unified for the AtomVM platform.
 
 ## Installation
 
-- Install ESP-IDF SDK 4.4
+- Install ESP-IDF SDK 5.2
 - Checkout [atomvm](https://github.com/AtomVM/AtomVM)
 - Within `src/platform/esp32/components`, checkout [M5Unified](https://github.com/m5stack/M5Unified)
 - Within `src/platform/esp32/components`, checkout [M5GFX](https://github.com/m5stack/M5GFX)
