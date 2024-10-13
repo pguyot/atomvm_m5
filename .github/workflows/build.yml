@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: espressif/idf:release-v4.4
+    container: espressif/idf:release-v5.2
     steps:
     - name: Checkout AtomVM
       uses: actions/checkout@v3
@@ -39,7 +39,7 @@ jobs:
 
   build-doc:
     runs-on: ubuntu-latest
-    container: erlang:26
+    container: erlang:27
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
 
   erlfmt:
     runs-on: ubuntu-latest
-    container: erlang:26
+    container: erlang:27
     steps:
       - name: Checkout
         uses: actions/checkout@v3
