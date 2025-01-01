@@ -74,6 +74,8 @@ static term nif_get_board(Context* ctx, int argc, term argv[])
         return MAKE_ATOM(ctx, "\x9", "atom_s3lite");
     case m5::board_t::board_M5AtomS3:
         return MAKE_ATOM(ctx, "\x9", "atom_s3");
+    case m5::board_t::board_M5Cardputer:
+        return MAKE_ATOM(ctx, "\x9", "cardputer");
 #elif defined(CONFIG_IDF_TARGET_ESP32C3)
     case m5::board_t::board_M5StampC3:
         return MAKE_ATOM(ctx, "\x8", "stamp_c3");
