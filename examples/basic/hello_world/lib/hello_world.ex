@@ -91,13 +91,13 @@ defmodule HelloWorld do
     if :m5_btn_a.was_released(), do: :m5_display.wakeup()
 
     # Display button states
-    # :m5_display.start_write()
-    # display_button_state(:m5_btn_pwr, "pwr", 2, 783.991)
-    # display_button_state(:m5_btn_a, "a", 3, 523.251)
-    # display_button_state(:m5_btn_b, "b", 4, 587.330)
-    # display_button_state(:m5_btn_c, "c", 5, 659.255)
-    # display_button_state(:m5_btn_ext, "ext", 6, 698.456)
-    # :m5_display.end_write()
+    :m5_display.start_write()
+    display_button_state(:m5_btn_pwr, "pwr", 2, 783.991)
+    display_button_state(:m5_btn_a, "a", 3, 523.251)
+    display_button_state(:m5_btn_b, "b", 4, 587.330)
+    display_button_state(:m5_btn_c, "c", 5, 659.255)
+    display_button_state(:m5_btn_ext, "ext", 6, 698.456)
+    :m5_display.end_write()
 
     new_sec = System.monotonic_time(:second)
 
@@ -254,7 +254,7 @@ defmodule HelloWorld do
   end
 
   defp button_state_name(button_module, [test | tail]) do
-    if button_module.test() do
+    if apply(button_module, test, []) do
       Atom.to_string(test)
     else
       button_state_name(button_module, tail)
