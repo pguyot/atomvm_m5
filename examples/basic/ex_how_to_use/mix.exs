@@ -18,18 +18,18 @@
 # SPDX-License-Identifier: Apache-2.0 OR LGPL-2.1-or-later
 #
 
-defmodule HelloWorld.MixProject do
+defmodule HowToUse.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :HelloWorld,
+      app: :HowToUse,
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       atomvm: [
-        start: HelloWorld,
+        start: HowToUse,
         flash_offset: 0x250000
       ]
     ]
