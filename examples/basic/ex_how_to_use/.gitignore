@@ -8,3 +8,4 @@ src/config.erl
 rebar.lock
 *.avm
 **.beam
+deps
