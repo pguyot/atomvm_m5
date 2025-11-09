@@ -1,0 +1,11 @@
+# Copyright 2025 Paul Guyot <pguyot@kallisys.net>
+# SPDX-License-Identifier: MIT
+dependencies:
+  idf:
+    version: '>=5.1.0'
+  M5Unified:
+    git: https://github.com/m5stack/M5Unified
+    version: 0.2.10
+  M5GFX:
+    git: https://github.com/m5stack/M5GFX
+    version: 0.2.17

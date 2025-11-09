@@ -8,27 +8,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: espressif/idf:release-v5.2
+    container: espressif/idf:${{ matrix.idf-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        esp-idf-target: ["esp32", "esp32c3", "esp32c6", "esp32s3", "esp32p4"]
+        language: ['cpp']
+        idf-version:
+         - 'v5.1.6'
+         - 'v5.2.6'
+         - 'v5.3.4'
+         - 'v5.4.3'
+         - 'v5.5.1'
+
+        exclude:
+        - esp-idf-target: "esp32c3"
+          idf-version: 'v5.1.6'
+        - esp-idf-target: "esp32p4"
+          idf-version: 'v5.1.6'
+        - esp-idf-target: "esp32p4"
+          idf-version: 'v5.2.6'
     steps:
     - name: Checkout AtomVM
       uses: actions/checkout@v5
       with:
         repository: atomvm/AtomVM
         path: AtomVM
-    - name: Checkout M5Unified
-      uses: actions/checkout@v5
-      with:
-        repository: m5stack/M5Unified
-        path: AtomVM/src/platform/esp32/components/
-    - name: Checkout M5GFX
-      uses: actions/checkout@v5
-      with:
-        repository: m5stack/M5GFX
-        path: AtomVM/src/platform/esp32/components/
     - name: Checkout atomvm_m5
       uses: actions/checkout@v5
       with:
-        path: AtomVM/src/platform/esp32/components/
+        path: AtomVM/src/platforms/esp32/components/atomvm_m5
+
     - name: Build with idf.py
       shell: bash
       working-directory: AtomVM/src/platforms/esp32/
@@ -39,7 +49,7 @@ jobs:
 
   build-doc:
     runs-on: ubuntu-latest
-    container: erlang:27
+    container: erlang:28
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -71,7 +81,7 @@ jobs:
 
   erlfmt:
     runs-on: ubuntu-latest
-    container: erlang:27
+    container: erlang:28
     steps:
       - name: Checkout
         uses: actions/checkout@v5

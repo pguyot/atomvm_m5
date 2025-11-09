@@ -98,8 +98,8 @@ static term nif_get_board(Context* ctx, int argc, term argv[])
         return MAKE_ATOM(ctx, "\x5", "tough");
     case m5::board_t::board_M5Station:
         return MAKE_ATOM(ctx, "\x7", "station");
-    case m5::board_t::board_M5Atom:
-        return MAKE_ATOM(ctx, "\x4", "atom");
+    case m5::board_t::board_M5AtomLite:
+        return MAKE_ATOM(ctx, "\x9", "atom_lite");
     case m5::board_t::board_M5AtomPsram:
         return MAKE_ATOM(ctx, "\xA", "atom_psram");
     case m5::board_t::board_M5AtomU:
