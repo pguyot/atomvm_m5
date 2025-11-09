@@ -123,6 +123,9 @@ static term nif_power_get_type(Context* ctx, int argc, term argv[])
     case m5::Power_Class::pmic_adc:
         result = MAKE_ATOM(ctx, "\x3", "adc");
         break;
+    case m5::Power_Class::pmic_aw32001:
+        result = MAKE_ATOM(ctx, "\x7", "aw32001");
+        break;
     case m5::Power_Class::pmic_axp192:
         result = MAKE_ATOM(ctx, "\x6", "axp192");
         break;
