@@ -25,7 +25,7 @@
 #include <memory.h>
 #include <nifs.h>
 #include <term.h>
-//#define ENABLE_TRACE
+// #define ENABLE_TRACE
 #include <trace.h>
 
 #include "atomvm_m5_nifs.h"

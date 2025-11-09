@@ -56,3 +56,11 @@ dkms.conf
 
 # rebar3
 _build
+
+# clang-format
+run-clang-format
+
+# others
+build
+doc
+venv
