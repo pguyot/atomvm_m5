@@ -17,4 +17,4 @@ Please refer to [examples](examples/) and [API documentation](https://pguyot.git
 
 This port is based on the following versions of M5Unified/M5GFX:
 - M5Unified [0.2.10](https://github.com/m5stack/M5Unified/releases/tag/0.2.10)
-- M5GFX [0.2.17](https://github.com/m5stack/M5GFX/releases/tag/0.2.17)
+- M5GFX [0.2.16](https://github.com/m5stack/M5GFX/releases/tag/0.2.16) (0.2.17 is currently incompatible with AtomVM)
