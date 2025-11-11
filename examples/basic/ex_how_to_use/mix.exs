@@ -45,7 +45,8 @@ defmodule HowToUse.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:exatomvm, git: "https://github.com/atomvm/ExAtomVM/"},
+      {:exatomvm, git: "https://github.com/atomvm/ExAtomVM/", runtime: false},
+      {:pythonx, "~> 0.4.0", runtime: false, optional: true},
       {:atomvm_m5, path: "../../../"}
     ]
   end
