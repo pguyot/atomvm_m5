@@ -13,7 +13,6 @@ jobs:
       fail-fast: false
       matrix:
         esp-idf-target: ["esp32", "esp32c3", "esp32c6", "esp32s3", "esp32p4"]
-        language: ['cpp']
         idf-version:
          - 'v5.1.6'
          - 'v5.2.6'
@@ -22,8 +21,6 @@ jobs:
          - 'v5.5.1'
 
         exclude:
-        - esp-idf-target: "esp32c3"
-          idf-version: 'v5.1.6'
         - esp-idf-target: "esp32p4"
           idf-version: 'v5.1.6'
         - esp-idf-target: "esp32p4"
